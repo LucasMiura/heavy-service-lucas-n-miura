@@ -1,4 +1,4 @@
-rootProject.name = "at2_base"
+rootProject.name = "heavy-service-lucas-n-miura"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
