@@ -22,6 +22,8 @@ kotlin {
             implementation(libs.kotlinx.coroutinesCore)
 
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+            implementation("io.ktor:ktor-client-content-negotiation:3.3.3")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.3")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
