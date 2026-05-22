@@ -29,6 +29,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(projects.shared)
+            implementation(libs.ktor.clientContentNegotiation)
+            implementation(libs.ktor.serializationKotlinxJson)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
