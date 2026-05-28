@@ -33,6 +33,8 @@ kotlin {
             implementation(projects.shared)
             implementation(libs.ktor.clientContentNegotiation)
             implementation(libs.ktor.serializationKotlinxJson)
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta03")
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

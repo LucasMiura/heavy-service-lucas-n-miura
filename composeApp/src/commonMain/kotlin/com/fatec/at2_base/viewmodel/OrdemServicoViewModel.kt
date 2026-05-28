@@ -33,7 +33,28 @@ class OrdemServicoViewModel : ViewModel() {
 
             } catch (e: Exception) {
 
-                println("Erro: ${e.message}")
+                e.printStackTrace()
+                println("Erro completo: ${e.message}")
+
+            }
+        }
+    }
+
+    fun adicionarOrdem(
+        ordem: OrdemServico
+    ) {
+
+        viewModelScope.launch {
+
+            try {
+
+                apiService.adicionarOrdem(ordem)
+
+                carregarOrdens()
+
+            } catch (e: Exception) {
+
+                e.printStackTrace()
 
             }
         }
