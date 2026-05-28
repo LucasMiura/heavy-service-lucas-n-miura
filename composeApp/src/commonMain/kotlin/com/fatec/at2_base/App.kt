@@ -1,22 +1,19 @@
 package com.fatec.at2_base
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.fatec.at2_base.navigation.AppNavigation
-import com.fatec.at2_base.theme.HeavyServiceTheme
+import com.fatec.at2_base.theme.AppTheme
 
 @Composable
 fun App() {
 
     val navController = rememberNavController()
 
-    HeavyServiceTheme {
+    AppTheme {
 
-        MaterialTheme {
-
-            AppNavigation(navController)
-
-        }
+        AppNavigation(
+            navController = navController
+        )
     }
 }

@@ -1,21 +1,21 @@
 package com.fatec.at2_base.theme
 
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val HeavyColors = darkColorScheme(
+private val DarkColorScheme = darkColorScheme(
 
-    primary = Color(0xFFFF9800),
+    primary = Color(0xFFFFB300),
 
-    secondary = Color(0xFF455A64),
+    secondary = Color(0xFFFF8F00),
 
     background = Color(0xFF121212),
 
     surface = Color(0xFF1E1E1E),
 
-    onPrimary = Color.White,
+    onPrimary = Color.Black,
 
     onBackground = Color.White,
 
@@ -23,13 +23,13 @@ private val HeavyColors = darkColorScheme(
 )
 
 @Composable
-fun HeavyServiceTheme(
+fun AppTheme(
     content: @Composable () -> Unit
 ) {
 
     MaterialTheme(
 
-        colorScheme = HeavyColors,
+        colorScheme = DarkColorScheme,
 
         content = content
     )

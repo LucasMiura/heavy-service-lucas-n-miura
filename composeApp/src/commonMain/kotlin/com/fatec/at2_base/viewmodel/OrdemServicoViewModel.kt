@@ -18,13 +18,23 @@ class OrdemServicoViewModel : ViewModel() {
     val ordens: StateFlow<List<OrdemServico>>
             = _ordens
 
+    private val _carregando =
+        MutableStateFlow(true)
+
+    val carregando: StateFlow<Boolean>
+            = _carregando
+
     init {
+
         carregarOrdens()
+
     }
 
     fun carregarOrdens() {
 
         viewModelScope.launch {
+
+            _carregando.value = true
 
             try {
 
@@ -33,10 +43,11 @@ class OrdemServicoViewModel : ViewModel() {
 
             } catch (e: Exception) {
 
-                e.printStackTrace()
-                println("Erro completo: ${e.message}")
+                println("Erro: ${e.message}")
 
             }
+
+            _carregando.value = false
         }
     }
 
@@ -54,7 +65,7 @@ class OrdemServicoViewModel : ViewModel() {
 
             } catch (e: Exception) {
 
-                e.printStackTrace()
+                println("Erro ao adicionar: ${e.message}")
 
             }
         }
