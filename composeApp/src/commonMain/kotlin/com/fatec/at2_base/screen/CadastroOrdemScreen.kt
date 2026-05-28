@@ -1,12 +1,18 @@
 package com.fatec.at2_base.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,17 +33,19 @@ fun CadastroOrdemScreen(
 
     val ordens by viewModel.ordens.collectAsState()
 
-    var cliente by remember {
-        mutableStateOf("")
-    }
+    var cliente by remember { mutableStateOf("") }
 
-    var marca by remember {
-        mutableStateOf("")
-    }
+    var marca by remember { mutableStateOf("") }
 
-    var modelo by remember {
-        mutableStateOf("")
-    }
+    var modelo by remember { mutableStateOf("") }
+
+    var ano by remember { mutableStateOf("") }
+
+    var quilometragem by remember { mutableStateOf("") }
+
+    var solicitacao by remember { mutableStateOf("") }
+
+    var status by remember { mutableStateOf("Em análise") }
 
     Scaffold(
 
@@ -61,59 +69,174 @@ fun CadastroOrdemScreen(
 
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(paddingValues)
-                .padding(16.dp)
+                .padding(16.dp),
+
+            verticalArrangement = Arrangement.spacedBy(12.dp)
 
         ) {
 
-            OutlinedTextField(
+            Card(
 
-                value = cliente,
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
 
-                onValueChange = {
-                    cliente = it
-                },
+            ) {
 
-                label = {
-                    Text("Cliente")
-                },
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
 
-                modifier = Modifier.fillMaxWidth()
-            )
+                    Text(
+                        text = "Dados do Caminhão",
 
-            OutlinedTextField(
+                        style = MaterialTheme.typography.titleMedium,
 
-                value = marca,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
 
-                onValueChange = {
-                    marca = it
-                },
+                    OutlinedTextField(
 
-                label = {
-                    Text("Marca")
-                },
+                        value = cliente,
 
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
-            )
+                        onValueChange = {
+                            cliente = it
+                        },
 
-            OutlinedTextField(
+                        label = {
+                            Text("Cliente")
+                        },
 
-                value = modelo,
+                        modifier = Modifier.fillMaxWidth()
+                    )
 
-                onValueChange = {
-                    modelo = it
-                },
+                    OutlinedTextField(
 
-                label = {
-                    Text("Modelo")
-                },
+                        value = marca,
 
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp)
-            )
+                        onValueChange = {
+                            marca = it
+                        },
+
+                        label = {
+                            Text("Marca")
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp)
+                    )
+
+                    OutlinedTextField(
+
+                        value = modelo,
+
+                        onValueChange = {
+                            modelo = it
+                        },
+
+                        label = {
+                            Text("Modelo")
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp)
+                    )
+
+                    OutlinedTextField(
+
+                        value = ano,
+
+                        onValueChange = {
+                            ano = it
+                        },
+
+                        label = {
+                            Text("Ano")
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp)
+                    )
+
+                    OutlinedTextField(
+
+                        value = quilometragem,
+
+                        onValueChange = {
+                            quilometragem = it
+                        },
+
+                        label = {
+                            Text("Quilometragem")
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp)
+                    )
+                }
+            }
+
+            Card(
+
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+
+            ) {
+
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+
+                    Text(
+                        text = "Solicitação",
+
+                        style = MaterialTheme.typography.titleMedium,
+
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+
+                    OutlinedTextField(
+
+                        value = solicitacao,
+
+                        onValueChange = {
+                            solicitacao = it
+                        },
+
+                        label = {
+                            Text("Descreva o problema")
+                        },
+
+                        modifier = Modifier.fillMaxWidth(),
+
+                        minLines = 4
+                    )
+
+                    OutlinedTextField(
+
+                        value = status,
+
+                        onValueChange = {
+                            status = it
+                        },
+
+                        label = {
+                            Text("Status")
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp)
+                    )
+                }
+            }
 
             Button(
 
@@ -131,13 +254,13 @@ fun CadastroOrdemScreen(
 
                             modelo = modelo,
 
-                            ano = 2024,
+                            ano = ano.toIntOrNull() ?: 0,
 
-                            quilometragem = 0,
+                            quilometragem = quilometragem.toIntOrNull() ?: 0,
 
-                            solicitacao = "Nova solicitação",
+                            solicitacao = solicitacao,
 
-                            status = "Em análise",
+                            status = status,
 
                             dataAbertura = "2026-05-27"
                         )
@@ -149,7 +272,7 @@ fun CadastroOrdemScreen(
 
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp)
+                    .padding(top = 8.dp)
 
             ) {
 

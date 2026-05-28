@@ -145,6 +145,13 @@ fun OrdemServicoScreen(
 
                     Card(
 
+                        onClick = {
+
+                            navController.navigate(
+                                "detalhes/${ordem.id}"
+                            )
+                        },
+
                         modifier = Modifier.fillMaxWidth(),
 
                         shape = RoundedCornerShape(20.dp),

@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.fatec.at2_base.screen.CadastroOrdemScreen
 import com.fatec.at2_base.screen.OrdemServicoScreen
 import com.fatec.at2_base.viewmodel.OrdemServicoViewModel
+import com.fatec.at2_base.screen.DetalheOrdemScreen
 
 @Composable
 fun AppNavigation(
@@ -35,6 +36,29 @@ fun AppNavigation(
                 navController = navController,
                 viewModel = viewModel
             )
+        }
+
+        composable("detalhes/{id}") { backStackEntry ->
+
+            val id =
+                backStackEntry.arguments
+                    ?.getString("id")
+                    ?.toIntOrNull()
+
+            val ordem =
+                viewModel.ordens.value.find {
+                    it.id == id
+                }
+
+            if (ordem != null) {
+
+                DetalheOrdemScreen(
+
+                    navController = navController,
+
+                    ordem = ordem
+                )
+            }
         }
     }
 }
