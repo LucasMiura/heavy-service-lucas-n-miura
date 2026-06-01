@@ -152,7 +152,7 @@ utilizando um dispositivo físico ou emulador Android.
 Link do vídeo:
 
 ```text
-COLE_AQUI_O_LINK_DO_VIDEO
+https://youtu.be/R0FEjN3NeGA
 ```
 
 ---
